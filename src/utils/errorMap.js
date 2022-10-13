@@ -1,6 +1,6 @@
 const errorMap = {
   PRODUCT_NOT_FOUND: 404,
-  INVALID_VALUE: 422,
+  CANT_ADD_PRODUCT: 404,
 };
 
 const mapError = (type) => errorMap[type] || 500;
