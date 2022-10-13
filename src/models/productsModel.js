@@ -1,17 +1,17 @@
 // const camelize = require('camelize');
 // const snakeize = require('snakeize');
-const connection = require('../models/db/connections');
+const connection = require('./db/connections');
 
 const allProducts = async () => {
   const [result] = await connection.execute(
-    'SELECT * FROM StoreManger.products',
+    'SELECT * FROM StoreManager.products',
   );
   return result;
 };
 
-const findById = async (productsId) => {
+const findById = async (id) => {
   const [[result]] = await connection.execute(
-    'SELECT * FROM StoreManger.products WHERE id = ? ORDER BY id ASC',
+    'SELECT * FROM StoreManager.products WHERE id = ? ORDER BY id ASC',
     [id],
   );
   return result;
@@ -19,5 +19,5 @@ const findById = async (productsId) => {
 
 module.exports = {
   allProducts,
-  findById
+  findById,
 };
