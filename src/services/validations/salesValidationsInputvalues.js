@@ -1,4 +1,4 @@
-const { idSchema, productNameSchema, productNameLenghtSchema } = require('./schemas');
+const { salesProductsSchema, salesQuantitySchema, salesIdSchema } = require('./salesSchemas');
 
 const validateId = (id) => {
   const { error } = idSchema.validate(id);

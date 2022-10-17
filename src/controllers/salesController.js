@@ -10,7 +10,7 @@ const listSales = async (_req, res) => {
 };
 
 const addSales = async (req, res) => {
-  // console.log(req.body);
+  console.log(req.body);
   const { productId, quantity } = req.body;
   const { type, message } = await salesService.addNewSales(productId, quantity);
 
