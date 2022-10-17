@@ -1,5 +1,9 @@
 const { productsModel } = require('../models');
-const { validateId, validateProduct } = require('./validations/validationsInputValues');
+const {
+  validateId,
+  validateProduct,
+  // validateProductName,
+} = require('./validations/ProductsValidationsInputValues');
 
 const getAllProducts = async () => {
   const products = await productsModel.allProducts();
@@ -17,9 +21,11 @@ const getProductsById = async (id) => {
 
 const addNewProduct = async (name) => {
   const error = validateProduct();
-  if (error.type) return error;
 
+  if (error.type) return error;
+  console.log('oi');
   const product = await productsModel.addProduct(name);
+  console.log('outro oi');
   if (!name) return { type: 'CANT_ADD_PRODUCT', message: 'Format not enabled' };
   return { type: null, message: product };
 };

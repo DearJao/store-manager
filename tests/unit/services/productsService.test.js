@@ -5,7 +5,7 @@ const { productsModel } = require('../../../src/models');
 const connection = require('../../../src/models/db/connections');
 const { products } = require('../../integration/models/mocks/productsModelMock');
 
-describe('Testes de unidade da camada model de produtos', async function () {
+describe('Testes de unidade da camada service de produtos', async function () {
   afterEach(sinon.restore);
 
   it('Recupera todos os produtos', async function () {
