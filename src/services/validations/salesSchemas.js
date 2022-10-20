@@ -1,13 +1,14 @@
 const Joi = require('joi');
 
-const salesProductsSchema = Joi.number().integer().min(1).required();
+const idSchema = Joi.number().integer().min(1).required();
 
-const salesQuantitySchema = Joi.object({ name: Joi.string().min(5).required() });
+const salesObj = Joi.object({
+  productId: idSchema.label('productId'),
+  quantity: idSchema.label('quantity'),
+});
 
-const salesIdSchema = Joi.object({ name: Joi.string().min(5).required() });
+const salesSchema = Joi.array().items(salesObj);
 
 module.exports = {
-  salesProductsSchema,
-  salesQuantitySchema,
-  salesIdSchema,
+  salesSchema,
 };
