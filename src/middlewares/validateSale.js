@@ -1,4 +1,4 @@
-const { salesSchema } = require('./salesSchemas');
+const { salesSchema } = require('./schemas');
 
 const salesValidate = (sales) => {
   const { error } = salesSchema.validate(sales);
