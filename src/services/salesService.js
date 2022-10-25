@@ -1,5 +1,6 @@
 const { salesModel } = require('../models');
 const { productsModel } = require('../models');
+const { validateId } = require('./validations/ProductsValidationsInputValues');
 
 const verifySalesDb = async (id) => {
   const product = await productsModel.findById(id);
@@ -28,17 +29,21 @@ const addSales = async (sales) => {
 };
 
 const getAllSales = async () => {
-  const sales = salesModel.allSales();
+  const sales = await salesModel.allSales();
   return { type: null, message: sales };
 };
 
 const getAllSalesById = async (id) => {
-  const error = verifySalesDb(id);
-
+  const error = validateId(id);
   if (error.type) return error;
 
   const sales = await salesModel.findSalesById(id);
-
+  if (sales === undefined) {
+    return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+  }
+  if (sales.length === 0) {
+    return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+  }
   return { type: null, message: sales };
 };
 

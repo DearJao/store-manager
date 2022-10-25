@@ -2,17 +2,20 @@ const camelize = require('camelize');
 const connection = require('./db/connections');
 
 const allSales = async () => {
+  console.log('oii');
   const [result] = await connection.execute(
-  `SELECT sale_id, date, product_id, quantity
+  `SELECT sp.sale_id, s.date, sp.product_id, sp.quantity
   FROM StoreManager.sales_products AS sp
   INNER JOIN StoreManager.sales AS s
-  ON sp.sale_id = s.id;`,
+  ON sp.sale_id = s.id
+  ORDER BY sp.sale_id, sp.product_id;`,
   );
+  console.log(result);
   return camelize(result);
 };
 
 const findSalesById = async (id) => {
-  const [[result]] = await connection.execute(
+  const [result] = await connection.execute(
   `SELECT date, product_id, quantity
   FROM StoreManager.sales_products AS sp
   INNER JOIN StoreManager.sales AS s
@@ -20,6 +23,7 @@ const findSalesById = async (id) => {
   WHERE sp.sale_id = ?;`,
     [id],
   );
+  console.log(camelize(result));
   return camelize(result);
 };
 

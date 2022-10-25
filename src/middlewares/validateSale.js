@@ -11,4 +11,6 @@ const salesValidate = (sales) => {
   return { type: null, message: '' };
 };
 
-module.exports = { salesValidate };
+module.exports = {
+  salesValidate,
+};
